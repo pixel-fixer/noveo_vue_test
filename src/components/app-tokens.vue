@@ -5,6 +5,8 @@
                 <label for="exampleInputEmail1">APP Client ID</label>
                 <input class="form-control" id="exampleInputEmail1" placeholder="Enter email" v-model="client_id" @input="updateClientId">
             </div>
+        </div>
+        <div class="col col-sm-6">
             <div class="form-group" v-if="client_id">
                 <label for="exampleInputEmail1">APP Token</label>
                 <input class="form-control" id="exampleInputEmail1" placeholder="Enter email" v-model="token" @input="updateAppToken">

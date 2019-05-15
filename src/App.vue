@@ -3,8 +3,8 @@
     <div class="container">
         <h1><img class="logo" src="./assets/logo.png" height="40">Yandex Disk REST API test</h1>
         <app-tokens></app-tokens>
-        <button type="submit" class="btn btn-primary" @click="makeAuth" v-if="!$store.state.token">Получить токен</button>
-        <button type="submit" class="btn btn-primary" @click=" $store.dispatch('loadDir')" v-if="$store.state.token">Список директорий</button>
+        <button type="submit" class="btn btn-primary" @click="getAuthToken" v-if="!$store.state.token">Получить токен</button>
+        <button type="submit" class="btn btn-primary" @click="$store.dispatch('loadDir')" v-if="$store.state.token">Список директорий</button>
         <dir-list v-if="$store.state.dir_list"></dir-list>
     </div>
   </div>
@@ -24,11 +24,10 @@ export default {
     DirList
   },
   methods:{
-    makeAuth(){
+    getAuthToken(){
         window.location = 'https://oauth.yandex.ru/authorize?response_type=token&client_id=' + this.$store.state.client_id
     }
   }
-  
 }
 </script>
 
