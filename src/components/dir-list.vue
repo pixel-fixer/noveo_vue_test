@@ -4,7 +4,7 @@
             <tr v-for="item in $store.state.dir_list._embedded.items"
             class="dir_list__item dir_list__item--dir"
             v-if="item.type == 'dir'" 
-            @click="$store.dispatch('loadDir', item.path)" :key="item.md5">
+            @click="setDir(item.path)" :key="item.md5">
                 <td>
                     <div class="icon"></span><font-awesome-icon icon="folder" /></div>
                     {{item.name}}
@@ -21,14 +21,9 @@
 <script>
 export default {
     name: 'dir-list',
-    data: function() {
-        return {
-           
-        }
-    },
     methods:{
-        getDir(dir){
-            this.$store.dispath('loadDir', dir)
+        setDir(dir){
+            this.$router.push({ name: 'dir', params: { dir: dir.replace('disk:/', '') } })
         }
     }
 }

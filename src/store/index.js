@@ -30,15 +30,10 @@ export default new Vuex.Store({
             axios.defaults.headers.common['Accept'] = 'application/json';
             axios.defaults.headers.common['Authorization'] = `OAuth ${this.state.token}`
 
-            let params = {
-                params: {
-                    path: dir
-                }
-            }
-
-            axios.get('https://cloud-api.yandex.net/v1/disk/resources',  params).then((response) => {
-                commit('SET_DIR_LIST', response.data)
-            })
+            axios.get('https://cloud-api.yandex.net/v1/disk/resources',  { params: { path: dir } })
+                .then((response) => {
+                    commit('SET_DIR_LIST', response.data)
+                })
           }
     },
     plugins:  [createPersistedState()]

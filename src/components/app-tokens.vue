@@ -14,8 +14,21 @@
                 </div>
             </div>
         </div>
+        <div class="btn-group">
         <button type="submit" class="btn btn-primary" @click="getAuthToken" v-if="!$store.state.token">Получить токен</button>
-        <button type="submit" class="btn btn-primary" @click="$store.dispatch('loadDir')" v-if="$store.state.token">Список директорий</button>
+            <button
+                v-if="$route.params.dir"
+                class="btn btn-primary"
+                @click="$router.go(-1)">
+                <font-awesome-icon icon="arrow-left" />
+            </button>
+            <button v-if="$store.state.token"
+                    type="submit"
+                    class="btn btn-primary"
+                    @click="$router.push({ name: 'index'}); $store.dispatch('loadDir')"
+                    >Список директорий
+            </button>
+        </div>
     </div>
 </template>
 

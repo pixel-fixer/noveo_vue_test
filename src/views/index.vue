@@ -15,10 +15,24 @@ export default {
   data: () => ({
     response: null
   }),
+  created(){
+    this.getDir()
+  },
+  watch: {
+    '$route': 'getDir'
+  },
   components: {
     AppTokens,
     DirList
   },
+  methods: {
+      getDir(){
+        if(this.$route.params.dir)
+            this.$store.dispatch('loadDir', this.$route.params.dir)
+        else
+            this.$store.dispatch('loadDir')
+      }
+  }
 }
 </script>
 

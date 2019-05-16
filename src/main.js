@@ -6,10 +6,10 @@ import VueRouter from 'vue-router'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faFolder } from '@fortawesome/free-solid-svg-icons'
+import { faFolder, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faFolder)
+library.add(faFolder, faArrowLeft)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -22,8 +22,8 @@ window.axios = axios
 const index = () => import('./views/index')
 const router = new VueRouter({
   routes: [
-    { path: '/', component: index },
-    { path: '/dir/:dir',  component: index }
+    { path: '/', component: index, name: 'index' },
+    { path: '/dir/:dir',  component: index, name: 'dir' }
   ],
   mode: 'history'
 })
