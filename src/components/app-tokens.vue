@@ -19,7 +19,7 @@
             <button
                 v-if="$route.params.dir"
                 class="btn btn-primary"
-                @click="$router.go(-1)">
+                @click="goBack">
                 <font-awesome-icon icon="arrow-left" />
             </button>
             <button v-if="$store.state.token"
@@ -50,6 +50,14 @@ export default {
         },
         getAuthToken(){
             window.location = 'https://oauth.yandex.ru/authorize?response_type=token&client_id=' + this.$store.state.client_id
+        },
+        goBack(){
+            if(window.history.length == 2 && this.$router.params.dir){
+                this.$router.push({ name: 'index'})
+                this.$store.dispatch('loadDir')
+            }else{
+                this.$router.go(-1);
+            }
         }
     }
 }
