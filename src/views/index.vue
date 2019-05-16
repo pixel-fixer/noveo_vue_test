@@ -2,13 +2,17 @@
     <div class="container" v-cloak>
         <h1><img class="logo" src="./../assets/logo.png" height="40">Yandex Disk REST API test</h1>
         <app-tokens></app-tokens>
-        <dir-list v-if="$store.state.dir_list"></dir-list>
+        <preloader v-if="$store.state.isLoading"></preloader>
+        <div v-else>
+          <dir-list v-if="$store.state.dir_list"></dir-list>
+        </div>
     </div>
 </template>
 
 <script>
 import AppTokens from './../components/app-tokens.vue'
 import DirList from './../components/dir-list.vue'
+import Preloader from './../components/preloader.vue'
 
 export default {
   name: 'app',
@@ -23,7 +27,8 @@ export default {
   },
   components: {
     AppTokens,
-    DirList
+    DirList,
+    Preloader
   },
   methods: {
       getDir(){
