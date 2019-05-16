@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
-    client_id: 'f8af9313665440e29db739d6bd7056e6',
-    token: 'AQAAAAAC69ieAAWqCzo5Na8ptUittz2muhgt22Y',
+    client_id: '', //f8af9313665440e29db739d6bd7056e6
+    token: '', //AQAAAAAC69ieAAWqCzo5Na8ptUittz2muhgt22Y
     dir_list: null
 }
 
@@ -39,5 +40,6 @@ export default new Vuex.Store({
                 commit('SET_DIR_LIST', response.data)
             })
           }
-    }
+    },
+    plugins:  [createPersistedState()]
 })
